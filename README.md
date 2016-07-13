@@ -22,17 +22,7 @@ call pathogen#helptags() " generate helptags for everything in 'runtimepath'
 filetype plugin indent on
 ```
 
-## 2. Fortran support
----------
-
-Add the following to .vimrc
-
-```bash
-"Fortran related
-let fortran_free_source=1
-```
-
-## 3. Colorscheme - molokai
+## 2. Colorscheme - molokai
 -----------
 
 https://github.com/tomasr/molokai
@@ -49,17 +39,33 @@ if &t_Co >=256 || has("gui_running")
 endif
 ```
 
-## 4. Syntax highlighting
+## 3. Syntax highlighting
 ------
+Install syntastic from https://github.com/scrooloose/syntastic
+```bash
+> cd bundle
+> git clone https://github.com/scrooloose/syntastic.git
+```
+
 Add the following to your .vimrc
 ```bash
 "syntax
 if &t_Co > 2 || has("gui_running")
     syntax on
 endif
+
+"Fortran related
+let fortran_free_source=1
+
+"Syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_check_on_open=1
+let g:syntastic_fortran_flags='-ffixed-line-length-none'
+let g:yankring_history_dir = '$HOME/.vim'
+
 ```
 
-## 5. Python-friendly settings
+## 4. Python-friendly settings
 ------
 Add the following to your .vimrc
 ```bash
@@ -72,7 +78,17 @@ set softtabstop=4
 set expandtab
 ```
 
-### 6. General useful settings
+You can define a function to autofix tabs in python files:
+```bash
+"Esc-py to retab the file
+function! Ptab()
+    :set expandtab
+    :retab
+endfunction
+map py :call Ptab() <CR>
+```
+
+### 4. General useful settings
 ----
 Add the following to your .vimrc
 
