@@ -95,6 +95,7 @@ Add the following to your .vimrc
 ```bash
 set pastetoggle=<F2>
 set modeline
+set modelines=5
 
 set guifont=Menlo\ Regular:h14
 set ruler
